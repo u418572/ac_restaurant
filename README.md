@@ -7,6 +7,8 @@
  - express-handlebars
 
  ## features
+ - 8 restaurants for looking for
+ - you can check each restaurant per page
 
 
 
