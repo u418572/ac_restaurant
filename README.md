@@ -9,6 +9,7 @@
  ## features
  - 8 restaurants for looking for
  - you can check each restaurant per page
+ - in search use name or category for searching restaurants
 
 
 
