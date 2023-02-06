@@ -23,8 +23,16 @@ app.get('/', (req, res) => {
 app.get('/restaurants/:restaurant_id', (req, res) => {
   console.log('req params', req.params.restaurant_id)
   const restaurant = restaurants.results.find(item => item.id.toString()==req.params.restaurant_id)
-   console.log('this:',restaurant)
   res.render('show', {restaurant: restaurant})
+})
+// search bar
+app.get('/search',(req, res) => {
+  const keyword = req.query.keyword
+  const restaurantSearch = restaurants.results.filter(item =>item.name.toLowerCase().includes(keyword.toLowerCase()))
+  const category = restaurants.results.filter(item => item.category.toLowerCase().includes(keyword.toLowerCase()))
+  console.log(restaurantSearch)
+  res.render('index',{restaurants: restaurantSearch, keyword: keyword,restaurants: category})
+
 })
 app.listen(port ,() => {
   console.log(`Express is listening on http://localhost:${port}`)
