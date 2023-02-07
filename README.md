@@ -9,7 +9,7 @@
 
  ## Included
  - node.js
- - express
+ - express/n
  - express-handlebars
 
  ## features
