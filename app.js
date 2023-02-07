@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
   res.render('index', {restaurants: restaurants.results})
 })
 
-// render restaurant/
+// render restaurant description/
 app.get('/restaurants/:restaurant_id', (req, res) => {
   console.log('req params', req.params.restaurant_id)
   const restaurant = restaurants.results.find(item => item.id.toString()==req.params.restaurant_id)
@@ -27,12 +27,13 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
 })
 // search bar
 app.get('/search',(req, res) => {
-  const keyword = req.query.keyword
-  const restaurantSearch = restaurants.results.filter(item =>item.name.toLowerCase().includes(keyword.toLowerCase()))
-  const category = restaurants.results.filter(item => item.category.toLowerCase().includes(keyword.toLowerCase()))
-  res.render('index',{restaurants: restaurantSearch, keyword: keyword,restaurants: category})
+  const keyword = req.query.keyword.toLowerCase()
+  const restaurantSearch = restaurants.results.filter(item => item.name.toLowerCase().includes(keyword) || item.category.toLowerCase().includes(keyword) )
+  res.render('index',{restaurants: restaurantSearch, keyword: keyword})
 
 })
+
+ 
 app.listen(port ,() => {
   console.log(`Express is listening on http://localhost:${port}`)
 })
